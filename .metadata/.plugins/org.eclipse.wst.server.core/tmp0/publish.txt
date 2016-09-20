@@ -1,3 +1,4 @@
 #Tomcat publish data
-#Wed Aug 31 22:06:56 BRT 2016
+#Mon Sep 19 22:27:35 BRT 2016
+org.eclipse.jst.j2ee.server\:lib_unisep=/home/allan/apache-tomcat-8.0.36/webapps/pizzaria/WEB-INF/lib/lib_unisep.jar
 org.eclipse.jst.jee.server\:pizzaria=/home/allan/apache-tomcat-8.0.36/webapps/pizzaria

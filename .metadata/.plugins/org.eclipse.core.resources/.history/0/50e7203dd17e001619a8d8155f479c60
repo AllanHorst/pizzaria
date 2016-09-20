@@ -1,0 +1,30 @@
+package br.com.sliceitup.servlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import com.google.gson.Gson;
+
+import br.com.sliceitup.dao.PedidoDAO;
+import br.com.sliceitup.vo.ClienteVO;
+import br.com.sliceitup.vo.PedidoVO;
+
+@WebServlet("/salvar-pedido")
+public class SalvarPedidoServlet extends HttpServlet {
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		String strObj = (String) req.getParameter("");
+		
+		PedidoVO vo = new Gson().fromJson(strObj, PedidoVO.class);
+		
+		PedidoDAO daoPedido = new PedidoDAO();
+		daoPedido.salvar(vo);
+		
+	}
+}

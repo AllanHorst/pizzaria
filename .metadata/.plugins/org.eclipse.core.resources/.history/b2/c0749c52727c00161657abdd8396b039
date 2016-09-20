@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html ng-app="testeApp">
+<head>
+	<script type="text/javascript" src="angular/angular-1.4.8.js"></script>
+	<script type="text/javascript" src="js/controller.js"></script>
+	<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+	<script type="text/javascript" src="js/my-auto-complete.js"></script>
+	<meta charset="utf-8">
+	<title>Teste</title>
+</head>
+<body ng-controller="testeController">
+	<my-auto-complete ng-model="teste"></my-auto-complete>
+	<br>
+	<button ng-click="click()"></button>
+</body>
+</html>

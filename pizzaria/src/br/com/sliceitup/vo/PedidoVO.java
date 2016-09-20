@@ -2,6 +2,7 @@ package br.com.sliceitup.vo;
 
 import java.sql.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,27 +13,27 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="pedido")
+@Table(name = "pedido")
 public class PedidoVO {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
 	private Integer id;
-	
-	@Column(name="saida")
+
+	@Column(name = "saida")
 	private Date saida;
 
-	@Column(name="data")
+	@Column(name = "data")
 	private Date data;
-	
-	@Column(name="status")
+
+	@Column(name = "status")
 	private String status;
 
-	@ManyToOne
-	@JoinColumn(name="idcliente")
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "idcliente")
 	private ClienteVO cliente;
-	
+
 	public Integer getId() {
 		return id;
 	}

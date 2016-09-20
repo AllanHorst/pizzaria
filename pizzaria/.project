@@ -3,6 +3,7 @@
 	<name>autoComplete</name>
 	<comment></comment>
 	<projects>
+		<project>lib_unisep</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

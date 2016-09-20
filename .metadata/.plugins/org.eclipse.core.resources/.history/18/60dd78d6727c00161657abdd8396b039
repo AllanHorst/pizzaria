@@ -1,0 +1,13 @@
+angular.module('testeApp', ['myAutoComplete'])
+
+.controller('testeController', ['$scope', function($scope){
+	$scope.teste = '';
+	
+	$scope.click = function() {
+		$.post("pesquisar-cliente", {value: newValue}, function(data){
+			console.log(data);
+		});
+	}
+	
+	
+}])
