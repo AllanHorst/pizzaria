@@ -18,7 +18,7 @@ public class SalvarClienteServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String strObj = (String) req.getParameter("obj");
+		String strObj = (String) req.getParameter("cliente");
 
 		ClienteVO cliente = new Gson().fromJson(strObj, ClienteVO.class);
 

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html ng-app="SaborApp">
+<head>
+	<title>Sabores</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<script type="text/javascript" src="angular/angular-1.4.8.js"></script>
+	<script type="text/javascript" src="js/sabor-controller.js"></script>
+	<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+
+
+</head>
+<body ng-controller="SaborController">
+	<header>
+		<img class="logo" src="footage/logo.png" alt="logo" width="230px"></img>
+
+		<div class="top-nav">
+			<nav>
+				<ul>
+					<li><a href="index.html">PEDIDOS</a></li>
+					<li><a href="clientes.html">CLIENTES</a></li>
+					<li><a class="active" href="#">SABORES</a></li>
+				</ul>
+			</nav>
+		</div>	
+	</header>
+
+	<div class="table-container">
+		<table>
+			<thead>
+				<tr class="theader">
+					<th width="90%">Sabor</th>
+					<th width="10%"><img class="search-icon" id="search-trigger" src="footage/search-icon.png"></th>
+				</tr>
+				<tr class="search">
+					<th width="90%">
+						<input ng-model="searchText" class="search-input" type="text" name="search" placeholder="Pesquisar">
+						<img class="cancel-icon" id="close-search" src="footage/cancel-icon.png">
+					</th>
+					<th width="10%"><img class="search-icon" src="footage/search-icon.png"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr id="cliente-cadastro">
+					<form ng-submit="salvarSabor()">
+						<td><input class="input-cliente" type="text" ng-model="sabor.descricao" placeholder="Sabor" autofocus></td>
+						<td><input class="submit input-cliente" type="submit" value=""><img class="cancel-icon" id="close-client-register" src="footage/cancel-icon.png"></td>
+					</form>
+				</tr>
+				<tr id="cliente-trigger">
+					<td id="novo-cliente" colspan="4">+ Novo Sabor</td>
+				</tr>
+				<tr ng-repeat="sabor in listaSabores | filter: {descricao: searchText}">
+					<td>{{sabor.descricao}}</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+<!-- BG -->
+	<div class="bg"></div>
+
+</body>
+	<script src="https://use.typekit.net/shm0ggr.js"></script>
+	<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+	<script src="js/jquery-3.1.0.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery.mask.min.js"></script>
+	<script src="js/script.js"></script>	
+</html>

@@ -1,16 +1,254 @@
 <!DOCTYPE html>
-<html ng-app="testeApp">
+<html ng-app="mainApp">
 <head>
+	<!-- css files -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+	
+	<!-- Js files -->
 	<script type="text/javascript" src="angular/angular-1.4.8.js"></script>
-	<script type="text/javascript" src="js/controller.js"></script>
+	<script type="text/javascript" src="js/main-controller.js"></script>
 	<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
 	<script type="text/javascript" src="js/my-auto-complete.js"></script>
+
 	<meta charset="utf-8">
-	<title>Teste</title>
+	<title>Pedidos</title>
 </head>
-<body ng-controller="testeController">
-	<my-auto-complete ng-model="teste"></my-auto-complete>
-	<br>
-	<button ng-click="click()">Botao</button>
+<body ng-controller="MainController">
+	<header>
+		<img class="logo" src="footage/logo.png" alt="logo" width="230px"></img>
+
+		<div class="top-nav">
+			<nav>
+				<ul>
+					<li><a class="active">PEDIDOS</a></li>
+					<li><a href="clientes.html">CLIENTES</a></li>
+					<li><a href="sabores.html">SABORES</a></li>
+				</ul>
+			</nav>
+		</div>	
+	</header>
+	<!-- Pedidos -->
+	<div class="wrapper a">
+		<div class="content">
+			<div class="novo-pedido">
+				<img class="plus" src="footage/plus.png" alt="+"></img>
+			</div>
+			<div ng-mouseenter="mouseEnter($event)" ng-mouseleave="mouseLeave($event)" class="pedido"  ng-repeat="item in listaPedidos | filter: {status: 'AGUARDANDO'}" id="{{item.id}}">
+				<div class="pedido-hover">
+					<img id="select" ng-click="proximaFase(item)" src="footage/select-icon.png"></img>
+					<div class="icons">
+						<img id="edit-icon" ng-click="editClick(item)" src="footage/edit-icon.png">
+						<img id="delete-icon" ng-click="deleteClick(item)" src="footage/delete-icon.png">
+					</div>
+				</div>
+				<div class="container">
+					<h3>{{item.cliente.nome}}</h3>
+					<div ng-repeat="pedido in item.listaItens">
+						<p>- 
+							<strong>{{pedido.quantidade}}</strong> pizza(s) 
+							<strong>{{obterTamanho(pedido.tamanho)}}</strong> de
+							<strong ng-repeat="saborPedido in pedido.listaSabores">
+								{{saborPedido.sabor.descricao}}
+								<span ng-if="!$last">, </span>
+							</strong>;
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="wrapper b">
+		<div class="content">
+			<div ng-mouseenter="mouseEnter($event)" ng-mouseleave="mouseLeave($event)" class="pedido"  ng-repeat="item in listaPedidos | filter: {status: 'MONTANDO'}" id="{{item.id}}">
+				<div class="pedido-hover">
+					<img id="select" ng-click="proximaFase(item)" src="footage/select-icon.png"></img>
+					<div class="icons">
+						<img id="edit-icon" ng-click="editClick(item)" src="footage/edit-icon.png">
+						<img id="delete-icon" ng-click="deleteClick(item)" src="footage/delete-icon.png">
+					</div>
+				</div>
+				<div class="container">
+					<h3>{{item.cliente.nome}}</h3>
+					<div ng-repeat="pedido in item.listaItens">
+						<p>- 
+							<strong>{{pedido.quantidade}}</strong> pizza(s) 
+							<strong>{{pegarTamanho(pedido.tamanho)}}</strong> de
+							<strong ng-repeat="saborPedido in pedido.listaSabores">
+								{{saborPedido.sabor.descricao}}
+								<span ng-if="!$last">, </span>
+							</strong>;
+						</p>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="wrapper c">
+		<div class="content">
+			<div ng-mouseenter="mouseEnter($event)" ng-mouseleave="mouseLeave($event)" class="pedido"  ng-repeat="item in listaPedidos | filter: {status: 'ASSANDO'}" id="{{item.id}}">
+				<div class="pedido-hover">
+					<img id="select" ng-click="proximaFase(item)" src="footage/select-icon.png"></img>
+					<div class="icons">
+						<img id="edit-icon" ng-click="editClick(item)" src="footage/edit-icon.png">
+						<img id="delete-icon" ng-click="deleteClick(item)" src="footage/delete-icon.png">
+					</div>
+				</div>
+				<div class="container">
+					<h3>{{item.cliente.nome}}</h3>
+					<div ng-repeat="pedido in item.listaItens">
+						<p>- 
+							<strong>{{pedido.quantidade}}</strong> pizza(s) 
+							<strong>{{pegarTamanho(pedido.tamanho)}}</strong> de
+							<strong ng-repeat="saborPedido in pedido.listaSabores">
+								{{saborPedido.sabor.descricao}}
+								<span ng-if="!$last">, </span>
+							</strong>;
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="wrapper d">
+		<div class="content">
+			<div ng-mouseenter="mouseEnter($event)" ng-mouseleave="mouseLeave($event)" class="pedido"  ng-repeat="item in listaPedidos | filter: {status: 'ENTREGANDO'}" id="{{item.id}}">
+				<div class="pedido-hover">
+					<img id="select" ng-click="proximaFase(item)" src="footage/select-icon.png"></img>
+					<div class="icons">
+						<img id="edit-icon" ng-click="editClick(item)" src="footage/edit-icon.png">
+						<img id="delete-icon" ng-click="deleteClick(item)" src="footage/delete-icon.png">
+					</div>
+				</div>
+				<div class="container">
+					<h3>{{item.cliente.nome}}</h3>
+					<div ng-repeat="pedido in item.listaItens">
+						<p>- 
+							<strong>{{pedido.quantidade}}</strong> pizza(s) 
+							<strong>{{pegarTamanho(pedido.tamanho)}}</strong> de
+							<strong ng-repeat="saborPedido in pedido.listaSabores">
+								{{saborPedido.sabor.descricao}}
+								<span ng-if="!$last">, </span>
+							</strong>;
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="wrapper e">
+		<div class="content">
+			<div ng-mouseenter="mouseEnter($event)" ng-mouseleave="mouseLeave($event)" class="pedido"  ng-repeat="item in listaPedidos | filter: {status: 'ENTREGUE'}" id="{{item.id}}">
+				<div class="pedido-hover">
+					<img id="select" ng-click="proximaFase(item)" src="footage/select-icon.png"></img>
+					<div class="icons">
+						<img id="edit-icon" ng-click="editClick(item)" src="footage/edit-icon.png">
+						<img id="delete-icon" ng-click="deleteClick(item)" src="footage/delete-icon.png">
+					</div>
+				</div>
+				<div class="container">
+					<h3>{{item.cliente.nome}}</h3>
+					<div ng-repeat="pedido in item.listaItens">
+						<p>- 
+							<strong>{{pedido.quantidade}}</strong> pizza(s) 
+							<strong>{{pegarTamanho(pedido.tamanho)}}</strong> de
+							<strong ng-repeat="saborPedido in pedido.listaSabores">
+								{{saborPedido.sabor.descricao}}
+								<span ng-if="!$last">, </span>
+							</strong>;
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Status Nav -->
+	<div class="status-nav">
+		<nav>
+			<ul>
+				<li><div class="status on" id="s-aguardando"></div></li>
+				<li><div class="status" id="s-montando"></div></li>
+				<li><div class="status" id="s-assando"></div></li>
+				<li><div class="status" id="s-saiu"></div></li>
+				<li><div class="status" id="s-entregue"></div></li>
+			</ul>
+		</nav>
+	</div>
+
+	<!-- Modal Ask -->
+	<div class="modal" id="modal-ask">
+		<div class="modal-content">
+			<span class="close" id="close-ask">X</span>
+			<h2>O cliente ja tem cadastro ?</h2>
+			<div class="buttons">
+				<a href="clientes.html" class="cancel-button">Não</a>
+				<a href="#" class="confirm-button" id="sim">Sim</a>
+			</div>
+		</div>
+		<div class="modal-bg"></div>
+	</div>
+
+	<!-- Modal Cadastro Cliente -->
+	<div class="modal" id="modal-cadastro">
+		<div class="modal-content">
+			<span class="close" id="close-cadastro">X</span>
+			<h6>Novo Pedido</h6>
+			<form>
+				<select class="modal-input" ng-model="pedido.cliente" ng-options="op.nome for op in listaClientes">
+					<option value=""></option>
+				</select>
+
+				<h5>Pedido</h5><br>
+				
+				<div class="pedido-itens">
+					<p ng-repeat="item in pedido.listaItens">- 
+						<strong>{{item.quantidade}}</strong> pizza(s) <strong>{{obterTamanho(item.tamanho)}}(s)</strong> de 
+						<strong ng-repeat="saborItem in item.listaSabores">
+							{{saborItem.sabor.descricao}}
+							<span ng-if="!$last">, </span>
+						</strong>;
+					</p>
+				</div>
+
+				<input ng-model="itemPedido.quantidade" class="modal-input-line" id="qtd" type="text" name="qtd" placeholder="Qtd">
+				<span><strong>Pizza(s) de: </strong></span>
+				<select ng-model="sabor1" ng-options="sabor.descricao for sabor in listaSabores" class="modal-input-line">
+					<option value="null"></option>
+				</select>
+				<select ng-model="sabor2" ng-options="sabor.descricao for sabor in listaSabores" class="modal-input-line">
+					<option value="null"></option>
+				</select><br>
+				<select ng-model="sabor3" ng-options="sabor.descricao for sabor in listaSabores" class="modal-input-line">
+					<option value="null"></option>
+				</select>
+				<select ng-model="sabor4" ng-options="sabor.descricao for sabor in listaSabores" class="modal-input-line">
+					<option value="null"></option>
+				</select>
+				<br><br><br>
+
+				<span><strong>Tamaho:</strong></span>
+				<select ng-model="itemPedido.tamanho" class="modal-input-line" id="tamanho" ng-options="tam.descricao for tam in tamanhos"></select>
+				<button ng-click="inserirItem()" class="pedido-confirm"><strong>+</strong></button>
+
+				<button class="submit-button" ng-click="salvarPedido()">Finalizar</button>
+			</form>
+		</div>
+		<div class="modal-bg"></div>
+	</div>
+
+
+	<div class="bg"></div>
 </body>
-</html>
+	<script src="https://use.typekit.net/shm0ggr.js"></script>
+	<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+	<script src="js/jquery-3.1.0.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery.mask.min.js"></script>
+	<script src="js/script.js"></script>
+</html>	

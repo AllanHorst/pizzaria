@@ -6,14 +6,15 @@ angular.module('myAutoComplete', [])
 		require: 'ngModel',
 		scope: true,
 		bindToController: {
-			ngModel: '='
+			ngModel: '=',
+			listItems: '='
 		},
 		controllerAs: 'controller',
 
 		templateUrl: 'js/template.html',
 
 		controller: function($scope, $element, $attrs) {
-			
+			console.log(this.listItems)
 			$scope.$watch('controller.ngModel', function(newValue, oldValue) {
 				if (newValue == undefined || newValue == '') {
 					return;

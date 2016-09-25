@@ -2,6 +2,7 @@ package br.com.sliceitup.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,22 +12,22 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
 
+import br.com.sliceitup.dao.ClienteDAO;
 import br.com.sliceitup.vo.ClienteVO;
 
-@WebServlet("/pesquisar-cliente")
+@WebServlet("/listar-clientes")
 public class ListarClienteServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.setContentType("aplication/json");
-		resp.setCharacterEncoding("utf-8");
+		resp.setContentType("application/json");
+
+		ClienteDAO daoCliente = new ClienteDAO();
+		List<ClienteVO> listaClientes = daoCliente.listar(ClienteVO.class);
 
 		PrintWriter pw = resp.getWriter();
 
-		ClienteVO vo = new ClienteVO();
-		vo.setNome("Allan");
-		vo.setId(1);
-		String gson = new Gson().toJson(vo);
+		String gson = new Gson().toJson(listaClientes);
 		pw.println(gson);
 		pw.flush();
 

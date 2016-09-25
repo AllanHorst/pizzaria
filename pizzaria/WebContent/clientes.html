@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html ng-app="ClienteApp" >
+<head>
+	<title>Pedidos</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style.css">
+
+	<script type="text/javascript" src="angular/angular-1.4.8.js"></script>
+	<script type="text/javascript" src="js/cliente-controller.js"></script>
+	<script type="text/javascript" src="js/jquery-3.1.0.min.js"></script>
+
+</head>
+<body ng-controller="ClienteController">
+	<header>
+		<img class="logo" src="footage/logo.png" alt="logo" width="230px"></img>
+
+		<div class="top-nav">
+			<nav>
+				<ul>
+					<li><a href="index.html">PEDIDOS</a></li>
+					<li><a class="active" href="#">CLIENTES</a></li>
+					<li><a href="sabores.html">SABORES</a></li>
+				</ul>
+			</nav>
+		</div>	
+	</header>
+
+	<div class="table-container">
+		<table>
+			<thead>
+				<tr class="theader">
+					<th width="40%">Cliente</th>
+					<th width="20%">Telefone</th>
+					<th width="30%">Endereço</th>
+					<th width="10%"><img class="search-icon" id="search-trigger" src="footage/search-icon.png"></th>
+				</tr>
+				<tr class="search">
+					<th width="40%">
+						<input ng-model="searchText" class="search-input" type="text" name="search" placeholder="Pesquisar">
+						<img class="cancel-icon" id="close-search" src="footage/cancel-icon.png">
+					</th>
+					<th width="20%"></th>
+					<th width="30%"></th>
+					<th width="10%"><img class="search-icon" src="footage/search-icon.png"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr id="cliente-cadastro">
+					<form ng-submit="salvarCliente()">
+						<td><input ng-model="cliente.nome" class="input-cliente" type="text"  placeholder="Nome" autofocus></td>
+						<td><input ng-model="cliente.telefone" class="input-cliente" id="phone-input" type="text" placeholder="Telefone"></td>
+						<td><input ng-model="cliente.endereco" class="input-cliente" type="text" placeholder="Endereço"></td>
+						<td><input class="submit input-cliente" type="submit" value=""><img class="cancel-icon" id="close-client-register" src="footage/cancel-icon.png"></td>
+					</form>
+				</tr>
+				<tr id="cliente-trigger">
+					<td id="novo-cliente" colspan="4">+ Novo Cliente</td>
+				</tr>
+				<tr ng-repeat="cliente in listaClientes | filter: {nome: searchText}">
+					<td>{{cliente.nome}}</td>
+					<td>{{cliente.telefone}}</td>
+					<td>{{cliente.endereco}}</td>
+					<td></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+
+<!-- BG -->
+	<div class="bg"></div>
+
+</body>
+	<script src="https://use.typekit.net/shm0ggr.js"></script>
+	<script>try{Typekit.load({ async: true });}catch(e){}</script>
+
+	<script src="js/jquery-3.1.0.min.js"></script>
+	<script src="js/jquery-ui.min.js"></script>
+	<script src="js/jquery.mask.min.js"></script>
+	<script src="js/script.js"></script>
+</html>
