@@ -37,7 +37,6 @@
 				<div class="pedido-hover">
 					<img id="select" ng-click="proximaFase(item)" src="footage/select-icon.png"></img>
 					<div class="icons">
-						<img id="edit-icon" ng-click="editClick(item)" src="footage/edit-icon.png">
 						<img id="delete-icon" ng-click="deleteClick(item)" src="footage/delete-icon.png">
 					</div>
 				</div>
@@ -64,7 +63,6 @@
 				<div class="pedido-hover">
 					<img id="select" ng-click="proximaFase(item)" src="footage/select-icon.png"></img>
 					<div class="icons">
-						<img id="edit-icon" ng-click="editClick(item)" src="footage/edit-icon.png">
 						<img id="delete-icon" ng-click="deleteClick(item)" src="footage/delete-icon.png">
 					</div>
 				</div>
@@ -92,7 +90,6 @@
 				<div class="pedido-hover">
 					<img id="select" ng-click="proximaFase(item)" src="footage/select-icon.png"></img>
 					<div class="icons">
-						<img id="edit-icon" ng-click="editClick(item)" src="footage/edit-icon.png">
 						<img id="delete-icon" ng-click="deleteClick(item)" src="footage/delete-icon.png">
 					</div>
 				</div>
@@ -119,7 +116,6 @@
 				<div class="pedido-hover">
 					<img id="select" ng-click="proximaFase(item)" src="footage/select-icon.png"></img>
 					<div class="icons">
-						<img id="edit-icon" ng-click="editClick(item)" src="footage/edit-icon.png">
 						<img id="delete-icon" ng-click="deleteClick(item)" src="footage/delete-icon.png">
 					</div>
 				</div>
@@ -146,7 +142,6 @@
 				<div class="pedido-hover">
 					<img id="select" ng-click="proximaFase(item)" src="footage/select-icon.png"></img>
 					<div class="icons">
-						<img id="edit-icon" ng-click="editClick(item)" src="footage/edit-icon.png">
 						<img id="delete-icon" ng-click="deleteClick(item)" src="footage/delete-icon.png">
 					</div>
 				</div>
@@ -200,7 +195,7 @@
 			<h6>Novo Pedido</h6>
 			<form>
 				<select class="modal-input" ng-model="pedido.cliente" ng-options="op.nome for op in listaClientes">
-					<option value=""></option>
+					<option value="" class="placeholder">Selecione o cliente</option>
 				</select>
 
 				<h5>Pedido</h5><br>
@@ -217,17 +212,17 @@
 
 				<input ng-model="itemPedido.quantidade" class="modal-input-line" id="qtd" type="text" name="qtd" placeholder="Qtd">
 				<span><strong>Pizza(s) de: </strong></span>
-				<select ng-model="sabor1" ng-options="sabor.descricao for sabor in listaSabores" class="modal-input-line">
-					<option value="null"></option>
+				<select ng-model="sabor1" ng-options="sabor.descricao for sabor in listaSabores" class="modal-input-line sabor">
+					<option value="" class="placeholder">Sabor 2</option>
 				</select>
-				<select ng-model="sabor2" ng-options="sabor.descricao for sabor in listaSabores" class="modal-input-line">
-					<option value="null"></option>
+				<select ng-model="sabor2" ng-options="sabor.descricao for sabor in listaSabores" class="modal-input-line sabor">
+					<option value="" class="placeholder">Sabor 1</option>
 				</select><br>
-				<select ng-model="sabor3" ng-options="sabor.descricao for sabor in listaSabores" class="modal-input-line">
-					<option value="null"></option>
+				<select ng-model="sabor3" ng-options="sabor.descricao for sabor in listaSabores" class="modal-input-line sabor">
+					<option value="" class="placeholder">Sabor 4</option>
 				</select>
-				<select ng-model="sabor4" ng-options="sabor.descricao for sabor in listaSabores" class="modal-input-line">
-					<option value="null"></option>
+				<select ng-model="sabor4" ng-options="sabor.descricao for sabor in listaSabores" class="modal-input-line sabor">
+					<option value="" class="placeholder">Sabor 3</option>
 				</select>
 				<br><br><br>
 

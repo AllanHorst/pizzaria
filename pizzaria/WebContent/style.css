@@ -5,7 +5,7 @@
 }
 
 html,body{
-	overflow: hidden;
+	overflow-x: hidden;
 }
 
 .bg{
@@ -136,6 +136,10 @@ header{
 	position: absolute;
 	top: 0;
 	left: 0;
+	transition: transform 0.2s;
+}
+#select:hover{
+	transform: scale(1.1);
 }
 .icons{
 	position: absolute;
@@ -145,7 +149,12 @@ header{
 #edit-icon{
 	margin-right: 20px;
 }
-
+#delete-icon{
+	transition: transform 0.2s;
+}
+#delete-icon:hover{
+	transform: scale(1.2);
+}
 
 h3{
 	font-size: 1.5em;
@@ -354,14 +363,16 @@ p{
 	border-color: #d9d9d9;
 	outline: none;
 }
+.modal-input-line::-webkit-input-placeholder{
+	color: rgba(0,0,0,0.35) !important;
+}
 span strong{
 	color: #97df70;
 }
 #qtd{
 	width: 30px;
 }
-#sabor{
-	width: 110px;
+.sabor{
 	float: right;
 	margin: 0 5px;
 }
@@ -537,16 +548,16 @@ td{
 	display: none;
 }
 
-/*input{
+.input-cliente{
 	background-color: transparent;
 	font-size: 1em;
 	border: none;
 	color: white;
 	outline: 0;
 }
-input::-webkit-input-placeholder{
+.input-cliente::-webkit-input-placeholder{
 	color: rgba(255,255,255,0.35) !important;
-}*/
+}
 .input-td{
 	padding: 18px 20px;
 }
@@ -584,4 +595,7 @@ input::-webkit-input-placeholder{
 }
 .search-icon:hover{
 	opacity: 0.5;
+}
+.placeholder{
+	color: rgba(0,0,0,0.35);
 }
